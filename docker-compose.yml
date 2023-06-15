@@ -19,7 +19,7 @@ name: webui-docker
 
 services:
   download:
-    build: ./services/download/
+    build: ./services/download-optimize/
     profiles: ["download"]
     volumes:
       - *v1
@@ -27,7 +27,7 @@ services:
   auto: &automatic
     <<: *base_service
     profiles: ["auto"]
-    build: ./services/AUTOMATIC1111
+    build: ./services/AUTOMATIC1111-optimize
     image: sd-auto:58
     environment:
       - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api

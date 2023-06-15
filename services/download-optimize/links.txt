@@ -1,0 +1,2 @@
+https://huggingface.co/hanafuusen2001/ReVAnimated/resolve/main/revAnimated_v11-inpainting.safetensors
+  out=StableDiffusion/revAnimated_v11-inpainting.safetensors

@@ -27,7 +27,7 @@ mkdir -vp /data/.cache \
 
 echo "Downloading, this might take a while..."
 
-aria2c -x 10 --disable-ipv6 --input-file /docker/links.txt --dir /data --continue
+aria2c --check-certificate=false -x 10 --disable-ipv6 --input-file /docker/links.txt --dir /data --continue
 
 # echo "Checking SHAs..."
 

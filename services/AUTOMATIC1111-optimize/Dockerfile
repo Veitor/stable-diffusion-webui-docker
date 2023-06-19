@@ -26,22 +26,29 @@ FROM python:3.10.9-slim
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
 #增加镜像加速https://developer.aliyun.com/mirror/pypi
-RUN cat>~/pip/pip.conf<<EOF\
-[global]\
-index-url = https://mirrors.aliyun.com/pypi/simple/\
-[install]\
-trusted-host=mirrors.aliyun.com\
+RUN mkdir -p ~/.pip && \
+cat <<EOF > ~/.pip/pip.conf
+[global]
+index-url=http://pypi.douban.com/simple/
+extra-index-url=
+  https://mirrors.cloud.aliyuncs.com/pypi/simple
+  https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=
+  pypi.douban.com
+  mirrors.cloud.aliyuncs.com
+  pypi.tuna.tsinghua.edu.cn
 EOF
 
-RUN cat>/etc/apt/sources.list<<EOT\
-deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib\
-deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib\
-deb https://mirrors.aliyun.com/debian-security/ bullseye-security main\
-deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main\
-deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib\
-deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib\
-deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib\
-deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib\
+RUN cat <<EOF > /etc/apt/sources.list
+deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb https://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
 EOF
 
 

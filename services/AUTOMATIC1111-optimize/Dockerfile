@@ -16,7 +16,7 @@ RUN . /clone.sh k-diffusion https://ghproxy.com/https://github.com/crowsonkb/k-d
 RUN . /clone.sh clip-interrogator https://ghproxy.com/https://github.com/pharmapsychotic/clip-interrogator 2486589f24165c8e3b303f84e9dbbea318df83e8
 
 
-FROM alpine:3.17 as xformers
+FROM registry-vpc.cn-hangzhou.aliyuncs.com/hangjia/aria2:1.36 as xformers
 RUN apk add --no-cache aria2
 RUN aria2c -x 5 --dir / --out wheel.whl 'https://ghproxy.com/https://github.com/AbdBarho/stable-diffusion-webui-docker/releases/download/6.0.0/xformers-0.0.21.dev544-cp310-cp310-manylinux2014_x86_64-pytorch201.whl'
 

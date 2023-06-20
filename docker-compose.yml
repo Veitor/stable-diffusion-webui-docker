@@ -7,6 +7,8 @@ x-base_service: &base_service
       - &v1 ./data:/data
       - &v2 ./output:/output
     stop_signal: SIGINT
+    extra_hosts:
+      - "cdn-lfs.huggingface.co:18.160.146.13"
     deploy:
       resources:
         reservations:
@@ -21,6 +23,8 @@ services:
   download:
     build: ./services/download-optimize/
     profiles: ["download"]
+    extra_hosts:
+      - "cdn-lfs.huggingface.co:18.160.146.13"
     volumes:
       - *v1
 
